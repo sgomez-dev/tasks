@@ -1,4 +1,2 @@
-node_modules
-/environments
-environments.development.ts
-environments.ts
+/node_modules
+/src/environments
