@@ -11,6 +11,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth';
 import { toast } from 'ngx-sonner';
+import { Router, RouterLink } from '@angular/router';
+import { GoogleButton } from '../../ui/google-button/google-button';
 
 interface FormSignUp {
   email: FormControl<string | null>;
@@ -18,13 +20,14 @@ interface FormSignUp {
 }
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButton],
   templateUrl: './sign-up.html',
   styles: ``,
 })
 export default class SignUp {
   private _formBuilder = inject(NonNullableFormBuilder);
   private _authService = inject(AuthService);
+  private _router = inject(Router);
 
   isRequired(field: 'email' | 'pass') {
     return isRequired(field, this.form);
@@ -51,6 +54,17 @@ export default class SignUp {
       await this._authService.signUp({ email, pass });
 
       toast.success('Usuario creado correctamente');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ha ocurrido un error');
+    }
+  }
+
+  async submitWithGoogle() {
+    try {
+      await this._authService.signInGoogle();
+      toast.success('Usuario creado correctamente');
+      this._router.navigateByUrl('/tasks');
     } catch (error) {
       toast.error('Ha ocurrido un error');
     }
