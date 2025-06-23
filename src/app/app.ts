@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet, RouterLink } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
+import { AuthStateService } from './shared/data-access/auth-state.service';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,4 @@ import { NgxSonnerToaster } from 'ngx-sonner';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {
-  protected title = 'tasks';
-}
+export class App {}

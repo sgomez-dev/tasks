@@ -58,4 +58,14 @@ export default class SignIn {
       toast.error('Ha ocurrido un error');
     }
   }
+
+  async submitWithGoogle() {
+    try {
+      await this._authService.signInGoogle();
+      toast.success('Bienvenido de nuevo.');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ha ocurrido un error');
+    }
+  }
 }

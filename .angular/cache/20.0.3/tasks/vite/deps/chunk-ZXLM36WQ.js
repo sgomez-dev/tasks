@@ -1,36 +1,42 @@
 import {
-  EnvironmentInjector,
+  pendingUntilEvent
+} from "./chunk-Z3HB7K6S.js";
+import {
   Inject,
   Injectable,
-  InjectionToken,
-  Injector,
   NgModule,
   NgZone,
-  Observable,
   Optional,
   PLATFORM_ID,
-  PendingTasks,
   VERSION,
   Version,
-  assertInInjectionContext,
+  isDevMode,
+  setClassMetadata,
+  ɵɵdefineNgModule
+} from "./chunk-4REA3VQH.js";
+import {
+  EnvironmentInjector,
+  InjectionToken,
+  Injector,
+  PendingTasks,
+  inject,
+  makeEnvironmentProviders,
+  runInInjectionContext,
+  ɵɵdefineInjectable,
+  ɵɵdefineInjector,
+  ɵɵinject
+} from "./chunk-HOJKE32O.js";
+import {
+  Observable,
   asyncScheduler,
   concatMap,
   distinct,
   from,
-  inject,
-  isDevMode,
-  makeEnvironmentProviders,
   observeOn,
   queueScheduler,
-  runInInjectionContext,
-  setClassMetadata,
   subscribeOn,
-  timer,
-  ɵɵdefineInjectable,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule,
-  ɵɵinject
-} from "./chunk-2HR4AMEK.js";
+  timer
+} from "./chunk-7CYFU3WA.js";
 import {
   __async,
   __spreadProps,
@@ -2366,47 +2372,6 @@ var name2 = "firebase";
 var version2 = "11.9.1";
 registerVersion(name2, version2, "app");
 
-// node_modules/@angular/core/fesm2022/rxjs-interop.mjs
-function pendingUntilEvent(injector) {
-  if (injector === void 0) {
-    ngDevMode && assertInInjectionContext(pendingUntilEvent);
-    injector = inject(Injector);
-  }
-  const taskService = injector.get(PendingTasks);
-  return (sourceObservable) => {
-    return new Observable((originalSubscriber) => {
-      const removeTask = taskService.add();
-      let cleanedUp = false;
-      function cleanupTask() {
-        if (cleanedUp) {
-          return;
-        }
-        removeTask();
-        cleanedUp = true;
-      }
-      const innerSubscription = sourceObservable.subscribe({
-        next: (v) => {
-          originalSubscriber.next(v);
-          cleanupTask();
-        },
-        complete: () => {
-          originalSubscriber.complete();
-          cleanupTask();
-        },
-        error: (e) => {
-          originalSubscriber.error(e);
-          cleanupTask();
-        }
-      });
-      innerSubscription.add(() => {
-        originalSubscriber.unsubscribe();
-        cleanupTask();
-      });
-      return innerSubscription;
-    });
-  };
-}
-
 // node_modules/@angular/fire/fesm2022/angular-fire.mjs
 var VERSION2 = new Version("ANGULARFIRE2_VERSION");
 function ɵgetDefaultInstanceOf(identifier, provided, defaultApp) {
@@ -2953,12 +2918,5 @@ firebase/app/dist/esm/index.esm.js:
    * See the License for the specific language governing permissions and
    * limitations under the License.
    *)
-
-@angular/core/fesm2022/rxjs-interop.mjs:
-  (**
-   * @license Angular v20.0.4
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
 */
-//# sourceMappingURL=chunk-ELM3VDDI.js.map
+//# sourceMappingURL=chunk-ZXLM36WQ.js.map

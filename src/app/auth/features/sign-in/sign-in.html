@@ -59,7 +59,9 @@
 
           <hr class="border border-white" />
           <div class="flex flex-col justify-center place-items-center">
-            <app-google-button></app-google-button>
+            <app-google-button
+              (onClick)="submitWithGoogle()"
+            ></app-google-button>
           </div>
 
           <button
